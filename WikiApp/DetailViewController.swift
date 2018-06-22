@@ -9,10 +9,27 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var personImage: UIImageView!
+    @IBOutlet weak var personDesc: UILabel!
+    
+    var personName : String?
+    var setImage : String?
+    var setDesc : String?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.title = personName
+        if setImage != nil
+        {
+        personImage.downloadedFrom(link: setImage!)
+        }else
+        {
+            personImage.image = UIImage(named: "placeholder")
+        }
+        personDesc.text = setDesc
         // Do any additional setup after loading the view.
     }
 

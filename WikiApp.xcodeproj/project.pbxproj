@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A573F69220DD41F600CA79DC /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573F69120DD41F600CA79DC /* UserDefault.swift */; };
 		A5B42B0D20DD1D580073F2AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B42B0C20DD1D580073F2AB /* AppDelegate.swift */; };
 		A5B42B0F20DD1D580073F2AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B42B0E20DD1D580073F2AB /* ViewController.swift */; };
 		A5B42B1220DD1D580073F2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B42B1020DD1D580073F2AB /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 		A5B42B1A20DD1D5B0073F2AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B42B1820DD1D5B0073F2AB /* LaunchScreen.storyboard */; };
 		A5B42B2520DD1D5B0073F2AB /* WikiAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B42B2420DD1D5B0073F2AB /* WikiAppTests.swift */; };
 		A5B42B3020DD1D5B0073F2AB /* WikiAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B42B2F20DD1D5B0073F2AB /* WikiAppUITests.swift */; };
+		A5B42B3E20DD1EF90073F2AB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B42B3D20DD1EF90073F2AB /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A573F69120DD41F600CA79DC /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		A5B42B0920DD1D580073F2AB /* WikiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B42B0C20DD1D580073F2AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B42B0E20DD1D580073F2AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		A5B42B2B20DD1D5B0073F2AB /* WikiAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WikiAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B42B2F20DD1D5B0073F2AB /* WikiAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiAppUITests.swift; sourceTree = "<group>"; };
 		A5B42B3120DD1D5B0073F2AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5B42B3D20DD1EF90073F2AB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			children = (
 				A5B42B0C20DD1D580073F2AB /* AppDelegate.swift */,
 				A5B42B0E20DD1D580073F2AB /* ViewController.swift */,
+				A5B42B3D20DD1EF90073F2AB /* DetailViewController.swift */,
+				A573F69120DD41F600CA79DC /* UserDefault.swift */,
 				A5B42B1020DD1D580073F2AB /* Main.storyboard */,
 				A5B42B1620DD1D5B0073F2AB /* Assets.xcassets */,
 				A5B42B1820DD1D5B0073F2AB /* LaunchScreen.storyboard */,
@@ -261,7 +267,9 @@
 			files = (
 				A5B42B0F20DD1D580073F2AB /* ViewController.swift in Sources */,
 				A5B42B1520DD1D580073F2AB /* WikiApp.xcdatamodeld in Sources */,
+				A573F69220DD41F600CA79DC /* UserDefault.swift in Sources */,
 				A5B42B0D20DD1D580073F2AB /* AppDelegate.swift in Sources */,
+				A5B42B3E20DD1EF90073F2AB /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XYRS879X7X;
 				INFOPLIST_FILE = WikiApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XYRS879X7X;
 				INFOPLIST_FILE = WikiApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
