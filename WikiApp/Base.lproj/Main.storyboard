@@ -35,21 +35,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ckM-s2-lQB">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="erZ-xY-YSJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="erZ-xY-YSJ" firstAttribute="top" secondItem="MpB-I5-mnc" secondAttribute="top" id="7Iq-aR-KTK"/>
+                            <constraint firstItem="erZ-xY-YSJ" firstAttribute="leading" secondItem="ckM-s2-lQB" secondAttribute="leading" id="AR3-6s-6DU"/>
                             <constraint firstAttribute="trailing" secondItem="ckM-s2-lQB" secondAttribute="trailing" id="NfF-8d-JZz"/>
-                            <constraint firstItem="ckM-s2-lQB" firstAttribute="top" secondItem="MpB-I5-mnc" secondAttribute="top" id="OKc-sF-vBV"/>
+                            <constraint firstItem="ckM-s2-lQB" firstAttribute="top" secondItem="MpB-I5-mnc" secondAttribute="top" constant="56" id="OKc-sF-vBV"/>
                             <constraint firstItem="ckM-s2-lQB" firstAttribute="leading" secondItem="nz1-8d-6kV" secondAttribute="leading" id="ozL-ZU-Qpq"/>
+                            <constraint firstItem="erZ-xY-YSJ" firstAttribute="trailing" secondItem="ckM-s2-lQB" secondAttribute="trailing" id="pkI-Gq-oPl"/>
                             <constraint firstItem="ckM-s2-lQB" firstAttribute="bottom" secondItem="MpB-I5-mnc" secondAttribute="bottom" id="veD-ag-D3D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MpB-I5-mnc"/>
                     </view>
                     <navigationItem key="navigationItem" id="Fh7-xW-UpZ"/>
                     <connections>
+                        <outlet property="searchBar" destination="erZ-xY-YSJ" id="geY-Cw-hLM"/>
                         <outlet property="wikiTableView" destination="ckM-s2-lQB" id="dyy-R1-XZm"/>
                     </connections>
                 </viewController>

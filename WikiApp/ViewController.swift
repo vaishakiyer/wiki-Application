@@ -12,7 +12,7 @@ struct Wiki {
     
     var titleLabel : String?
     var image : String?
-    var descriptionLabel : String?
+    var descriptionLabel : String? = ""
     
     init(JSON : AnyObject) {
         
@@ -42,10 +42,13 @@ let YScale = UIScreen.main.bounds.size.height / 568.0
 class ViewController: UIViewController {
     
     @IBOutlet weak var wikiTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     //MARK: Declare Variables
     
     var wikiObject : [Wiki]? = []
+    var filterArray : [Wiki]?
+    var searchActive : Bool? = false
     var indicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
 
     //MARK: ViewController Lifecycle
@@ -54,6 +57,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         createNav()
+        searchBar.delegate = self
         wikiTableView.delegate = self
         wikiTableView.dataSource = self
         wikiTableView.separatorStyle = .none
@@ -73,6 +77,7 @@ class ViewController: UIViewController {
     
     func createNav()
     {
+        searchBar.placeholder = "I want to learn about.."
         self.navigationItem.title = "Wikipedia"
     }
     
@@ -168,12 +173,18 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return (wikiObject?.count)!
+        if searchActive == true {
+          return (filterArray?.count)!
+        }else
+        {
+          return (wikiObject?.count)!
+        }
+            
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
      {
-       return 10
+        return 10
      }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -190,12 +201,24 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource{
         cell?.imageView?.image = UIImage(named: "placeholder")
         cell?.detailTextLabel?.numberOfLines = 0
         
+        if searchActive == false
+        {
         if let imageString = wikiObject![indexPath.section].image
         {
             cell?.imageView?.downloadedFrom(link: imageString)
         }
         cell?.textLabel?.text = wikiObject![indexPath.section].titleLabel
         cell?.detailTextLabel?.text = wikiObject![indexPath.section].descriptionLabel
+        }else
+        {
+            if let imageString = filterArray![indexPath.section].image
+            {
+                cell?.imageView?.downloadedFrom(link: imageString)
+            }
+            cell?.textLabel?.text = filterArray![indexPath.section].titleLabel
+            cell?.detailTextLabel?.text = filterArray![indexPath.section].descriptionLabel
+            
+        }
         return cell!
     }
     
@@ -206,19 +229,75 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource{
         
         let detailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
         
-        
-        if let imageString = wikiObject![indexPath.section].image
+        if searchActive == false
         {
-            detailController?.setImage = imageString
+            if let imageString = wikiObject![indexPath.section].image
+            {
+                detailController?.setImage = imageString
+            }
+            
+            detailController?.personName = wikiObject![indexPath.section].titleLabel
+            detailController?.setDesc = wikiObject![indexPath.section].descriptionLabel
+        }else
+        {
+            if let imageString = filterArray![indexPath.section].image
+            {
+                detailController?.setImage = imageString
+            }
+            
+            detailController?.personName = filterArray![indexPath.section].titleLabel
+            detailController?.setDesc = filterArray![indexPath.section].descriptionLabel
+            
         }
         
-        detailController?.personName = wikiObject![indexPath.section].titleLabel
-        detailController?.setDesc = wikiObject![indexPath.section].descriptionLabel
+      
         
     
         self.navigationController?.pushViewController(detailController!, animated: true)
         
     }
+    
+    
+}
+
+
+extension ViewController : UISearchBarDelegate{
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+
+        searchBar.showsCancelButton = true        
+        
+    }
+    
+     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+     {
+        
+        filterArray = wikiObject?.filter({(value) -> Bool in
+            
+            return ((value.titleLabel?.lowercased().contains(searchText.lowercased()))! || (value.descriptionLabel?.lowercased().contains(searchText.lowercased()))!)
+        })
+        
+         if searchText == ""
+         {
+            searchActive = false
+         }else
+         {
+            searchActive = true
+         }
+        
+        wikiTableView.reloadData()
+        
+    }
+    
+     func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+     {
+        searchBar.text = ""
+        searchActive = false
+        wikiTableView.reloadData()
+        self.searchBar.endEditing(true)
+        self.searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
     
     
 }
