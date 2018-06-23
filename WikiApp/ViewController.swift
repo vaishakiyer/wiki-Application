@@ -231,23 +231,14 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource{
         
         if searchActive == false
         {
-            if let imageString = wikiObject![indexPath.section].image
-            {
-                detailController?.setImage = imageString
-            }
             
             detailController?.personName = wikiObject![indexPath.section].titleLabel
-            detailController?.setDesc = wikiObject![indexPath.section].descriptionLabel
+    
         }else
         {
-            if let imageString = filterArray![indexPath.section].image
-            {
-                detailController?.setImage = imageString
-            }
-            
+          
             detailController?.personName = filterArray![indexPath.section].titleLabel
-            detailController?.setDesc = filterArray![indexPath.section].descriptionLabel
-            
+        
         }
         
       

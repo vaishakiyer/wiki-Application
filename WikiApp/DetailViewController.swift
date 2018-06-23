@@ -7,32 +7,40 @@
 //
 
 import UIKit
+import WebKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController{
     
-    @IBOutlet weak var personImage: UIImageView!
-    @IBOutlet weak var personDesc: UILabel!
+ 
+    @IBOutlet weak var webKitRederer: WKWebView!
     
     var personName : String?
-    var setImage : String?
-    var setDesc : String?
-    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         self.navigationItem.title = personName
-        if setImage != nil
-        {
-        personImage.downloadedFrom(link: setImage!)
-        }else
-        {
-            personImage.image = UIImage(named: "placeholder")
-        }
-        personDesc.text = setDesc
+        renderWebPage()
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    func renderWebPage()
+    {
+        personName = personName?.replacingOccurrences(of: " ", with: "_")
+        
+        let BaseString = "https://en.wikipedia.org/wiki/\(personName!)"
+        if let urlToLoad = URL(string: BaseString)
+        {
+            let urlRequest = URLRequest(url: urlToLoad, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
+            webKitRederer.load(urlRequest)
+        }
+        
+    }
+    
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
